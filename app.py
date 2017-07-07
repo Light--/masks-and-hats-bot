@@ -87,10 +87,11 @@ def tweet_random_image(handle, tweets_seen):
 
 RUN_EVERY_N_SECONDS = 60*5 # e.g. 60*5 = tweets every five minutes
 MAX_SKIPS = 20 # if no tweets in a while, tweet something random
+DO_RUN = True
 def main():
     handle = twitter_handle()
     tweets_seen = []
-    while True:
+    while DO_RUN:
         i = 0
         # start_id = get_start_id(handle)
         for tweet in handle.cursor(handle.get_mentions_timeline, include_entities=True):
