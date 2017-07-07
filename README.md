@@ -1,0 +1,1 @@
+A twitter bot using @leoneckert's [masks-and-hats](https://github.com/leoneckert/masks-and-hats) code that adds masks and hats to faces. Mention him in a tweet with an image and he'll reply back with the masked/hatted version.
