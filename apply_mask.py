@@ -1,3 +1,6 @@
+"""
+source: https://github.com/leoneckert/masks-and-hats
+"""
 import random, os, sys, subprocess, time, shutil
 import cv2
 import dlib

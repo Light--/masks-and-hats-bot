@@ -89,13 +89,19 @@ RUN_EVERY_N_SECONDS = 60*5 # e.g. 60*5 = tweets every five minutes
 MAX_SKIPS = 20 # if no tweets in a while, tweet something random
 DO_RUN = True
 def main():
+    """
+    reply to any tweets containing images of faces
+    otherwise, find a random image of a face
+    """
     handle = twitter_handle()
     tweets_seen = []
     while DO_RUN:
         i = 0
         # start_id = get_start_id(handle)
         for tweet in handle.cursor(handle.get_mentions_timeline, include_entities=True):
+            print "Sleeping for {} minutes...".format(RUN_EVERY_N_SECONDS/60)
             time.sleep(RUN_EVERY_N_SECONDS)
+            print "Awake."
             if tweet['id'] in tweets_seen or already_replied(tweet, handle):
                 print 'Seen tweet {} already.'.format(tweet['id'])
                 i += 1
