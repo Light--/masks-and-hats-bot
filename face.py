@@ -17,7 +17,9 @@ def update_image(infile, url=None):
     args.mask = 'masks/'
     args.unique = False
     input_paths, masks, output_paths, apply_unique_masks, is_video = validate_inputs.run(args)
-    apply_masks(input_paths, masks, output_paths, apply_unique_masks, is_video)
+    success = apply_masks(input_paths, masks, output_paths, apply_unique_masks, is_video)
+    if not success:
+        outfile = None
     return outfile
 
 if __name__ == '__main__':

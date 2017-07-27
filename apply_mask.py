@@ -123,7 +123,8 @@ def assert_dir(dir_path):
     return out_dir
 
 def apply_masks(input_paths, masks, output_paths, apply_unique_masks, is_video):
-            
+        
+    success = False
     print "[+] Applying mask(s)" 
     for j, path in enumerate(input_paths, 0):
         print "\n\t[+] Opening", path
@@ -142,6 +143,7 @@ def apply_masks(input_paths, masks, output_paths, apply_unique_masks, is_video):
                 output_path = os.path.join( temp_out, f) 
                 print "\t[+] Saving as", output_path
                 cv2.imwrite(output_path, img)
+                success = True
             continue
         print "\t[+] Found", len(faces), "faces"
         out = img.copy()
@@ -190,6 +192,7 @@ def apply_masks(input_paths, masks, output_paths, apply_unique_masks, is_video):
             output_path = os.path.join( temp_out, f) 
             print "\t[+] Saving as", output_path
             cv2.imwrite(output_path, out)
+        success = True
         
     if is_video == True:
         temp_dir = "/".join( path.split("/")[:-1]) 
@@ -218,6 +221,8 @@ def apply_masks(input_paths, masks, output_paths, apply_unique_masks, is_video):
         shutil.rmtree(temp_dir)
         shutil.rmtree(temp_out)
         print "\t[+] Saving as", output_paths[0]
+        success = True
+    return success
 
 if __name__ == "__main__":
     import argparse
